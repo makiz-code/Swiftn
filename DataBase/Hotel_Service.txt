@@ -1,0 +1,16 @@
+CREATE TABLE hotel_service (
+  service_id INT AUTO_INCREMENT PRIMARY KEY,
+  service_name VARCHAR(255)  NOT NULL,
+  service_logo VARCHAR(255)  NOT NULL,
+  paragraph TEXT NOT NULL
+);
+
+INSERT INTO hotel_service (service_name, service_logo, paragraph) VALUES
+('Refreshment', 'fas fa-swimming-pool', 'Enjoy a refreshing dip in our luxurious swimming pool and soak up the sun on our comfortable poolside loungers.'),
+('Fitness Center', 'fas fa-dumbbell', 'Stay in shape during your stay with access to our fully-equipped fitness center, featuring state-of-the-art cardio and strength training equipment.'),
+('Spa Services', 'fas fa-spa', 'Indulge in a range of spa services, from relaxing massages to invigorating body treatments, all designed to leave you feeling rejuvenated and refreshed.'),
+('Fine Dining', 'fas fa-utensils', 'Savor the flavors of our exquisite cuisine, expertly crafted by our team of talented chefs using only the freshest, locally-sourced ingredients.'),
+('24-Hour Room Service', 'fas fa-concierge-bell', 'Enjoy the convenience of 24-hour room service, with a wide selection of delicious dishes and beverages available at any time of day or night.'),
+('Concierge Services', 'fas fa-map-marked-alt', 'Let our knowledgeable and friendly concierge team help you plan your itinerary, book tickets to local attractions, and arrange transportation.'),
+('Business Center', 'fas fa-laptop', 'Stay productive during your stay with access to our fully-equipped business center, featuring high-speed internet, printing and scanning services, and private meeting rooms.'),
+('Pet-Friendly Accommodations', 'fas fa-dog', 'Our hotel offers a range of pet-friendly accommodations and amenities to ensure a comfortable stay for both you and your pet.');

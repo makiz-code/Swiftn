@@ -1,0 +1,8 @@
+CREATE TABLE cart (
+  cart_id INT AUTO_INCREMENT PRIMARY KEY,
+  qte INT,
+  user_id INT NOT NULL,
+  travel_offer_id INT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES user(user_id) on delete cascade,
+  FOREIGN KEY (travel_offer_id) REFERENCES travel_offer(travel_offer_id) on delete cascade
+);

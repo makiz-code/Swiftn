@@ -1,0 +1,106 @@
+CREATE TABLE activity (
+  activity_id INT NOT NULL AUTO_INCREMENT,
+  activity_name VARCHAR(255) NOT NULL,
+  destination_id INT NOT NULL,
+  PRIMARY KEY (activity_id),
+  FOREIGN KEY (destination_id) REFERENCES destination(destination_id)
+);
+
+INSERT INTO activity (activity_name, destination_id) VALUES
+('Visit the Statue of Liberty', 1),
+('Explore Central Park', 1),
+('Take a walk along the High Line', 1),
+('Visit the Metropolitan Museum of Art', 1),
+('Experience the nightlife in Times Square', 1),
+('See a Broadway show', 1),
+('Take a boat ride around Manhattan Island', 1),
+('Sample street food from a food cart', 1),
+('Shop for designer clothing in SoHo', 1);
+
+INSERT INTO activity (activity_name, destination_id) VALUES
+('Visit the Eiffel Tower', 2),
+('Explore the Louvre Museum', 2),
+('Take a stroll through the Tuileries Garden', 2),
+('See the famous stained glass windows at Sainte-Chapelle', 2),
+('Visit the Palace of Versailles', 2),
+('Experience the nightlife in the Montmartre district', 2),
+('Take a boat ride along the Seine River', 2),
+('Sample French cuisine at a local bistro or brasserie', 2),
+('Shop for high-end fashion on the Avenue des Champs-Élysées', 2);
+
+INSERT INTO activity (activity_name, destination_id) VALUES
+('Visit the Tokyo Skytree', 3),
+('Explore the Tsukiji Fish Market', 3),
+('Take a walk through the Meiji Shrine', 3),
+('See the famous Shibuya Crossing', 3),
+('Visit the Imperial Palace', 3),
+('Experience traditional Japanese culture at a tea ceremony', 3),
+('Take a boat ride along the Sumida River', 3),
+('Sample sushi at a local restaurant', 3),
+('Shop for electronics in Akihabara', 3);
+
+INSERT INTO activity (activity_name, destination_id) VALUES
+('Discover Bali''s stunning beaches', 4),
+('Experience Balinese culture at a traditional dance performance', 4),
+('Visit the Tirta Empul temple', 4),
+('Take a hike to the top of Mount Batur', 4),
+('Relax with a spa treatment', 4),
+('Shop for local handicrafts at the Ubud Art Market', 4),
+('Sample Indonesian cuisine at a local warung', 4),
+('Learn to surf at Kuta Beach', 4),
+('Take a boat ride to the nearby Gili Islands', 4);
+
+INSERT INTO activity (activity_name, destination_id) VALUES
+('Climb the Sydney Harbour Bridge', 5),
+('Visit the Sydney Opera House', 5),
+('Relax on Bondi Beach', 5),
+('Explore the Royal Botanic Garden', 5),
+('Take a ferry to Manly Beach', 5),
+('Visit Taronga Zoo', 5),
+('Sample Australian wine in the Hunter Valley', 5),
+('Learn to surf at Manly Beach', 5),
+('Take a coastal walk from Bondi to Coogee', 5);
+
+INSERT INTO activity (activity_name, destination_id) VALUES
+('Visit the Colosseum', 6),
+('Explore the Roman Forum', 6),
+('See the Pantheon', 6),
+('Visit Vatican City and see the Sistine Chapel', 6),
+('Throw a coin into the Trevi Fountain', 6),
+('Sample Italian gelato at a local gelateria', 6),
+('Take a walk through the Villa Borghese gardens', 6),
+('Shop for designer fashion on Via Condotti', 6),
+('Enjoy traditional Roman cuisine at a trattoria', 6);
+
+INSERT INTO activity (activity_name, destination_id) VALUES
+('Watch the sunset in Oia', 7),
+('Take a boat tour to the volcano and hot springs', 7),
+('Explore the ancient ruins of Akrotiri', 7),
+('Sip local wine at a Santorini winery', 7),
+('Relax on the black sand beaches of Perissa', 7),
+('Hike the Fira to Oia trail', 7),
+('Experience a traditional Greek meze dinner', 7),
+('Learn about local history at the Museum of Prehistoric Thera', 7),
+('Shop for handmade ceramics in the village of Megalochori', 7);
+
+INSERT INTO activity (activity_name, destination_id) VALUES
+('Visit the Sagrada Familia', 8),
+('Explore Park Guell', 8),
+('See the Gothic Quarter and Barcelona Cathedral', 8),
+('Experience the lively atmosphere of La Rambla', 8),
+('Try traditional Catalan cuisine at a local restaurant', 8),
+('Visit the Picasso Museum', 8),
+('Take a cable car up to Montjuic Castle', 8),
+('Shop for fresh produce at La Boqueria market', 8),
+('Watch a flamenco show at a local tablao', 8);
+
+INSERT INTO activity (activity_name, destination_id) VALUES
+('Take a canal cruise to see the city from the water', 9),
+('Explore the Van Gogh Museum', 9),
+('Visit the Anne Frank House', 9),
+('Experience the lively nightlife of the Leactivity_idseplein', 9),
+('Try traditional Dutch snacks at a local food stall', 9),
+('See the city from above at the A''DAM Lookout', 9),
+('Visit the Rijksmuseum to see works by Rembrandt and Vermeer', 9),
+('Rent a bike and explore the city like a local', 9),
+('See the windmills at Zaanse Schans', 9);

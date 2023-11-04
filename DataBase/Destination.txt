@@ -1,0 +1,37 @@
+CREATE TABLE destination (
+  destination_id INT NOT NULL AUTO_INCREMENT,
+  destination_name VARCHAR(255) NOT NULL,
+  destination_surname VARCHAR(255) NOT NULL,
+  discover VARCHAR(255) NOT NULL,
+  little_desc TEXT NOT NULL,
+  big_desc TEXT NOT NULL,
+  destination_src_image VARCHAR(255) NOT NULL,
+  PRIMARY KEY (destination_id)
+);
+
+INSERT INTO destination (destination_name, destination_surname, discover, little_desc, big_desc, destination_src_image)
+VALUES ('New York City', 'United States', 'Discover the city that never sleeps and all the excitement it has to offer', 'The Big Apple', 'New York City is the largest city in the United States and one of the most diverse cities in the world. It is home to iconic landmarks such as the Statue of Liberty, the Empire State Building, and Central Park. Visitors can explore the city''s many museums, galleries, and theaters, and indulge in its diverse culinary scene. With a never-ending list of things to do and see, New York City truly is the city that never sleeps.', '../img/dest1.jpg');
+
+INSERT INTO destination (destination_name, destination_surname, discover, little_desc, big_desc, destination_src_image)
+VALUES ('Paris', 'France', 'Experience the beauty of the city of love and lights, and immerse yourself in its rich history and culture', 'The City of Lights', 'Paris is the capital and most populous city of France. It is known for its beautiful architecture, rich history, world-renowned museums, and of course, its cuisine. Visitors can take a stroll along the Seine River, visit iconic landmarks such as the Eiffel Tower and Notre-Dame Cathedral, and explore the many art galleries and museums throughout the city. Paris is also known for its fashion scene and is home to some of the world''s most famous designers.', '../img/dest2.jpg');
+
+INSERT INTO destination (destination_name, destination_surname, discover, little_desc, big_desc, destination_src_image)
+VALUES ('Tokyo', 'Japan', 'Explore the fascinating traditions and modern innovations of Japan', 'The Land of the Rising Sun', 'Tokyo is the capital of Japan and the most populous city in the country. It is known for its unique blend of traditional and modern culture, with attractions ranging from ancient temples and shrines to cutting-edge technology and fashion. Visitors can enjoy the city''s delicious cuisine, bustling nightlife, and world-class museums and galleries.', '../img/dest3.jpg');
+
+INSERT INTO destination (destination_name, destination_surname, discover, little_desc, big_desc, destination_src_image)
+VALUES ('Bali', 'Indonesia', 'Discover a tropical paradise with stunning beaches and rich culture', 'The Island of the Gods', 'Bali is a tropical paradise located in Indonesia, known for its stunning beaches, lush landscapes, and rich culture. Visitors can explore the island''s many temples and shrines, indulge in its delicious cuisine, and relax on its beautiful beaches. Bali is also known for its vibrant nightlife and world-class surfing.', '../img/dest4.jpg');
+
+INSERT INTO destination (destination_name, destination_surname, discover, little_desc, big_desc, destination_src_image)
+VALUES ('Sydney', 'Australia', 'Experience the beauty of Australia\'s largest city and its iconic landmarks', 'The Harbour City', 'Sydney is the largest city in Australia and home to some of the country''s most iconic landmarks, including the Sydney Opera House and Harbour Brdestination_idge. Visitors can enjoy the city''s beautiful beaches, world-class dining, and vibrant nightlife. With its unique blend of natural beauty and urban sophistication, Sydney is a must-visit destination for any traveler.', '../img/dest5.jpg');
+
+INSERT INTO destination (destination_name, destination_surname, discover, little_desc, big_desc, destination_src_image)
+VALUES ('Rome', 'Italy', 'Step back in time and explore the historic city of Rome and its ancient ruins', 'The Eternal City', 'Rome is the capital and largest city of Italy. It is known for its rich history and stunning ancient ruins, including the Colosseum and the Roman Forum. Visitors can also explore the Vatican City, home to the Catholic Church and its many artistic treasures, or stroll through the picturesque streets of the Trastevere neighborhood. Rome is also famous for its cuisine, including pasta, pizza, and gelato.', '../img/dest6.jpg');
+
+INSERT INTO destination (destination_name, destination_surname, discover, little_desc, big_desc, destination_src_image)
+VALUES ('Santorini', 'Greece', 'Experience the stunning views of the caldera and the Aegean Sea', 'The Jewel of the Aegean Sea', 'Santorini is a Greek island located in the southern Aegean Sea. It is known for its stunning views of the caldera, colorful beaches, and traditional white-washed buildings. Visitors can explore the island''s many historic sites, including ancient ruins and churches, or take a boat tour to experience the beauty of the surrounding waters. Santorini is also famous for its cuisine, including fresh seafood and locally produced wines.', '../img/dest7.jpg');
+
+INSERT INTO destination (destination_name, destination_surname, discover, little_desc, big_desc, destination_src_image)
+VALUES ('Barcelona', 'Spain', 'Experience the vibrant culture of Spain''s second-largest city and its architectural wonders', 'The Capital of Catalonia', 'Barcelona is the capital of Catalonia and the second-largest city in Spain. It is known for its unique architecture, including the famous works of Antoni Gaudí, such as the Sagrada Família and Park Güell. Visitors can also explore the city''s many museums, including the Picasso Museum and the Joan Miró Foundation, or relax on the beaches of the Mediterranean coast. Barcelona is also famous for its cuisine, including tapas, paella, and cava.', '../img/dest8.jpg');
+
+INSERT INTO destination (destination_name, destination_surname, discover, little_desc, big_desc, destination_src_image)
+VALUES ('Amsterdam', 'Netherlands', 'Experience the lively culture and beautiful architecture of the Netherlands', 'The Venice of the North', 'Amsterdam is the capital and largest city of the Netherlands. It is known for its beautiful canals, historic architecture, and vibrant cultural scene. Visitors can explore the city''s many museums, including the Van Gogh Museum and the Rijksmuseum, or take a bike tour to experience the city like a local. Amsterdam is also famous for its nightlife, with a wdestination_ide range of bars, clubs, and live music venues.', '../img/dest9.jpg');
