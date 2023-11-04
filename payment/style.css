@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
+:root {
+  --main-color1: #be44ad;
+  --main-color2: #006fee;
+  --main-color3: #ff8000;
+  --red: #e60000;
+  --black: #222;
+  --white: #fff;
+  --light-black: #777;
+  --light-white: #fffc;
+  --dark-bg: rgba(0, 0, 0, 0.7);
+  --light-bg: #f2f2f2;
+  --gray-bg: #e7e7e7;
+  --border: 0.1rem solid var(--main-color1);
+  --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  --gray: #ccc;
+}
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  text-transform: capitalize;
+  list-style-type: none;
+  scroll-behavior: smooth;
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  min-height: 100vh;
+  background: url(../img/bg7.jpg) no-repeat center center / cover;
+}
+
+.container form {
+  padding: 1.25rem;
+  width: 700px;
+  box-shadow: var(--box-shadow);
+  background: url(../img/bg6.jpg) no-repeat center center / cover;
+}
+
+.container form .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.container form .row .col {
+  flex: 1 1 250px;
+}
+
+.container form .row .col .title {
+  font-size: 1.3rem;
+  color: var(--black);
+  padding-bottom: 0.25rem;
+  text-transform: uppercase;
+}
+
+.container form .row .col .inputBox {
+  margin: 0.9rem 0;
+}
+
+.container form .row .col .inputBox span {
+  margin-bottom: 0.7rem;
+  display: block;
+}
+
+.container form .row .col .inputBox input {
+  width: 100%;
+  border: 1px solid var(--gray);
+  background: none;
+  padding: 0.65rem 1rem;
+  font-size: 1rem;
+  text-transform: none;
+}
+
+.container form .row .col .inputBox input:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.container form .row .col .flex {
+  display: flex;
+  gap: 0.9rem;
+}
+
+.container form .row .col .flex .inputBox {
+  margin-top: 0.25rem;
+}
+
+.container form .row .col .inputBox img {
+  height: 2.5rem;
+  padding-top: 0.3rem;
+  filter: drop-shadow(0 0 1px #000);
+}
+
+.container form .submit-btn {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  background: var(--main-color3);
+  color: var(--white);
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.container form .submit-btn:hover {
+  background-color: #ffad33;
+}
