@@ -13,7 +13,7 @@ if (isset($_GET['link']) && strpos($_GET['link'], 'localhost/swiftn/')) {
 }
 
 $db_host = 'localhost';
-$db_name = 'travel_agency';
+$db_name = 'Swiftn';
 $db_username = 'root';
 $db_password = '7102';
 

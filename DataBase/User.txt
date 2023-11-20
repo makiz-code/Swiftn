@@ -5,5 +5,4 @@ CREATE TABLE user (
   password VARCHAR(255) NOT NULL,
   role INT NOT NULL
 );
-INSERT INTO user (user_name, email, password, role) VALUES ('Khalil', 'medk5466@gmail.com', 'khalil', 1);
-INSERT INTO user (user_name, email, password, role) VALUES ('Hajer', 'hajertalbi@gmail.com', 'hajer', 1);
+INSERT INTO user (user_name, email, password, role) VALUES ('Khalil', 'mohamed.khalil.zrelly@gmail.com', 'khalil', 1);

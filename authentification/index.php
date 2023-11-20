@@ -19,7 +19,7 @@ if ($_POST) {
   extract($_POST);
 
   $db_host = 'localhost';
-  $db_name = 'travel_agency';
+  $db_name = 'Swiftn';
   $db_username = 'root';
   $db_password = '7102';
 

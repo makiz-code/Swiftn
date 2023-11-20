@@ -1,2 +1,2 @@
-CREATE DATABASE travel_agency;
-use travel_agency;
+CREATE DATABASE Swiftn;
+use Swiftn;
