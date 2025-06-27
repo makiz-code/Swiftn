@@ -72,25 +72,25 @@ if (isset($_SESSION['authentified'])) {
     $added = 0;
   }
 } else {
-  header("Location: ../authentification/index.php?link=http://localhost/swiftn/book/index.php?id=" . $id);
+  header("Location: ../authentification/index.php?link=http://localhost/MAKIZ/Swiftn/book/index.php?id=" . $id);
 }
 
-if (isset($_POST["minus"])) {
+if (isset($_POST['cart-update-id'])) {
   $active = true;
-  $stmt = $pdo->prepare("SELECT count(*) as nb FROM travel_offer o, cart c WHERE o.travel_offer_id = c.travel_offer_id AND cart_id = :id AND qte > 1");
-  $stmt->execute(['id' => $_POST['cart-update-id']]);
-  if ($stmt->fetch(PDO::FETCH_ASSOC)['nb'] != 0) {
-    $stmt2 = $pdo->prepare("UPDATE cart SET qte = qte - 1 WHERE cart_id = :id");
-    $stmt2->execute(['id' => $_POST['cart-update-id']]);
-  }
-}
-if (isset($_POST["plus"])) {
-  $active = true;
-  $stmt = $pdo->prepare("SELECT count(*) as nb FROM travel_offer o, cart c WHERE o.travel_offer_id = c.travel_offer_id AND cart_id = :id AND qte < available_seats");
-  $stmt->execute(['id' => $_POST['cart-update-id']]);
-  if ($stmt->fetch(PDO::FETCH_ASSOC)['nb'] != 0) {
-    $stmt2 = $pdo->prepare("UPDATE cart SET qte = qte + 1 WHERE cart_id = :id");
-    $stmt2->execute(['id' => $_POST['cart-update-id']]);
+  if (isset($_POST["minus"])) {
+    $stmt = $pdo->prepare("SELECT count(*) as nb FROM travel_offer o, cart c WHERE o.travel_offer_id = c.travel_offer_id AND cart_id = :id AND qte > 1");
+    $stmt->execute(['id' => $_POST['cart-update-id']]);
+    if ($stmt->fetch(PDO::FETCH_ASSOC)['nb'] != 0) {
+      $stmt2 = $pdo->prepare("UPDATE cart SET qte = qte - 1 WHERE cart_id = :id");
+      $stmt2->execute(['id' => $_POST['cart-update-id']]);
+    }
+  } else if (isset($_POST["plus"])) {
+    $stmt = $pdo->prepare("SELECT count(*) as nb FROM travel_offer o, cart c WHERE o.travel_offer_id = c.travel_offer_id AND cart_id = :id AND qte < available_seats");
+    $stmt->execute(['id' => $_POST['cart-update-id']]);
+    if ($stmt->fetch(PDO::FETCH_ASSOC)['nb'] != 0) {
+      $stmt2 = $pdo->prepare("UPDATE cart SET qte = qte + 1 WHERE cart_id = :id");
+      $stmt2->execute(['id' => $_POST['cart-update-id']]);
+    }
   }
 }
 
@@ -148,11 +148,11 @@ if (isset($_POST["send"])) {
     </div>
 
     <nav class="navbar">
-      <li><a href="../home/index.php">home</a></li>
-      <li><a href="../destinations/index.php">destinations</a></li>
-      <li><a href="../about/index.php">about</a></li>
-      <li><a href="../offers/index.php">offers</a></li>
-      <li><a href="#contact">contact</a></li>
+      <li><a href="../home/index.php"><i class="fa fa-home" aria-hidden="true"></i><span>home</span></a></li>
+      <li><a href="../destinations/index.php"><i class='fa fa-archway'></i><span>destinations</span></a></li>
+      <li><a href="../about/index.php"><i class="fa fa-info-circle" aria-hidden="true"></i><span>about</span></a></li>
+      <li><a href="../offers/index.php"><i class="fa fa-tag"></i><span class="actual">offers</span></a></li>
+      <li><a href="#contact"><i class="fa fa-address-book"></i><span>contact</span></a></li>
     </nav>
 
     <div class="cta">
@@ -178,7 +178,8 @@ if (isset($_POST["send"])) {
     </div>
 
     <div id="user" class=<?= $class1 ?>>
-      <i class="fa fa-user"></i><span>
+      <img src="../img/img-1.jpg" id="img" alt="">
+      <span>
         <?= $_SESSION['name'] ?>
       </span>
     </div>
@@ -265,88 +266,95 @@ if (isset($_POST["send"])) {
     }
   } ?>
 
-    <section class="cart <?php if (isset($active)) {
-      echo "active";
-    } ?>" style="gap: <?= $gap ?>;">
-      <div class="products">
-        <?php
+  <section class="cart <?php if (isset($active)) {
+    echo "active";
+  } ?>" style="gap: <?= $gap ?>;">
+    <div class="products">
+      <?php
 
-        $stmt = $pdo->prepare("SELECT * FROM user u, cart c, travel_offer o WHERE u.user_id = c.user_id AND o.travel_offer_id = c.travel_offer_id AND u.user_id = :user_id ORDER BY cart_id DESC");
-        $stmt->execute(['user_id' => $user_id]);
-
-        while ($cart = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
-          <div class="product">
-            <img src=<?= $cart['travel_offer_src_image'] ?> alt="" />
-            <div>
-              <p class="name">
-                <?= $cart['travel_offer_name'] ?>
-              </p>
-              <span class="dates">
-                <?= $cart['departure_date'] ?>
-              </span>
-              <span class="dates">
-                <?= $cart['return_date'] ?>
-              </span>
-              <div class="price">
-                <?= $cart['price'] ?>
-              </div>
+      $stmt = $pdo->prepare("SELECT * FROM user u, cart c, travel_offer o WHERE u.user_id = c.user_id AND o.travel_offer_id = c.travel_offer_id AND u.user_id = :user_id ORDER BY cart_id DESC");
+      $stmt->execute(['user_id' => $user_id]);
+      if ($stmt->rowCount() == 0) {
+        $count = 0;
+      }
+      while ($cart = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
+        <div class="product">
+          <img src=<?= $cart['travel_offer_src_image'] ?> alt="" />
+          <div>
+            <a class="name" href="../book/index.php?id=<?= $cart['travel_offer_id'] ?>">
+              <?= $cart['travel_offer_name'] ?>
+            </a>
+            <span class="dates">
+              <?= $cart['departure_date'] ?>
+            </span>
+            <span class="dates">
+              <?= $cart['return_date'] ?>
+            </span>
+            <div class="price">
+              <?= $cart['price'] ?>
             </div>
-            <div class="quantity">
-              <form method="POST">
-                <input type="hidden" name="cart-update-id" value=<?= $cart['cart_id'] ?> />
-                <i class="fa fa-minus"><input type="submit" value="" name="minus"></i>
-              </form>
-              <span class="nbr">
-                <?= $cart['qte'] ?>
-              </span>
-              <form method="POST">
-                <input type="hidden" name="cart-update-id" value=<?= $cart['cart_id'] ?> />
-                <i class="fa fa-plus" data-max=<?= $cart['available_seats'] ?>><input type="submit" value="" name="plus"></i>
-              </form>
-            </div>
-            <form method="POST" action="./index.php?id=<?= $id ?>">
-              <input type="hidden" name="offer-delete-id" value=<?= $cart['travel_offer_id'] ?> />
-              <button type="submit"><i class="fa fa-trash"></i></button>
+          </div>
+          <div class="quantity">
+            <form method="POST">
+              <input type="hidden" name="cart-update-id" value=<?= $cart['cart_id'] ?> />
+              <i class="fa fa-minus"><input type="submit" value="" name="minus"></i>
+            </form>
+            <span class="nbr">
+              <?= $cart['qte'] ?>
+            </span>
+            <form method="POST">
+              <input type="hidden" name="cart-update-id" value=<?= $cart['cart_id'] ?> />
+              <i class="fa fa-plus" data-max=<?= $cart['available_seats'] ?>><input type="submit" value="" name="plus"></i>
             </form>
           </div>
-
-        <?php } ?>
-
-      </div>
-      <aside class="prices">
-        <h1>cart summary</h1>
-        <div class="container">
-          <div class="value">
-            <p>sub total</p>
-            <span class="sub-total"></span>
-          </div>
-          <div class="value">
-            <p>discount</p>
-            <span class="discount"></span>
-          </div>
-          <div class="value">
-            <p>total</p>
-            <span class="total"></span>
-          </div>
-          <?php
-          $stmt2 = $pdo->prepare("SELECT * from cart where user_id = :id");
-          $stmt2->execute(['id' => $user_id]);
-          if ($stmt2->fetch(PDO::FETCH_ASSOC) == 0) {
-            echo "<a href=# onclick=empty()>checkout</a>";
-            $errors = true;
-          } else {
-            echo "<a href=../payment/index.php?link=http://localhost/swiftn/book/index.php?id=" . $id . ">checkout</a>";
-          }
-          ?>
-          <script>
-            function empty() {
-              Swal.fire('Empty Cart', '', 'warning');
-            }
-          </script>
+          <form method="POST">
+            <input type="hidden" name="offer-delete-id" value=<?= $cart['travel_offer_id'] ?> />
+            <button type="submit"><i class="fa fa-trash"></i></button>
+          </form>
         </div>
-      </aside>
+
+      <?php } ?>
+
+    </div>
+    <aside class="prices <?php if (!isset($count))
+      echo 'inactif'; ?>">
+      <h1>cart summary</h1>
+      <div class="container">
+        <div class="value">
+          <p>sub total</p>
+          <span class="sub-total"></span>
+        </div>
+        <div class="value">
+          <p>discount</p>
+          <span class="discount"></span>
+        </div>
+        <div class="value">
+          <p>total</p>
+          <span class="total"></span>
+        </div>
+        <?php
+        $stmt2 = $pdo->prepare("SELECT * from cart where user_id = :id");
+        $stmt2->execute(['id' => $user_id]);
+        if ($stmt2->fetch(PDO::FETCH_ASSOC) == 0) {
+          echo "<a href=# onclick=empty()>checkout</a>";
+          $errors = true;
+        } else {
+          echo "<a href=../payment/index.php?link=http://localhost/MAKIZ/Swiftn/home/index.php>checkout</a>";
+        }
+        ?>
+        <script>
+          function empty() {
+            Swal.fire('Empty Cart', '', 'warning');
+          }
+        </script>
       </div>
-    </section>
+    </aside>
+    <i class="fa-solid fa-rotate" data-count=<?php if (isset($count)) {
+      echo $count;
+    } else {
+      echo '1';
+    } ?>></i>
+  </section>
 
   <section class="offer">
     <?php
@@ -413,7 +421,8 @@ if (isset($_POST["send"])) {
                   <?php $duration_days = floor((strtotime($travel_offer['return_date']) - strtotime($travel_offer['departure_date'])) / 86400);
                   echo $duration_days . " days" ?>
                 </td>
-                <td><a href="../dest/index.php?id=<?= $travel_offer['destination_id'] ?>"><?= $travel_offer['destination_name'] ?>,
+                <td><a
+                    href="../dest/index.php?id=<?= $travel_offer['destination_id'] ?>"><?= $travel_offer['destination_name'] ?>,
                     <?= $travel_offer['destination_surname'] ?></a></td>
               </tr>
             </tbody>
@@ -556,8 +565,8 @@ if (isset($_POST["send"])) {
             memories.
           </p>
           <div class="contact" id="contact">
-            <p><i class="fas fa-phone"></i> &nbsp; +216 74 666 855</p>
-            <p><i class="fas fa-envelope"></i> &nbsp; info@Swiftn.tn</p>
+            <p><i class="fas fa-phone"></i> &nbsp; +216 54 666 855</p>
+            <p><i class="fas fa-envelope"></i> &nbsp; Makiz@Swiftn.tn</p>
           </div>
           <div class="socials">
             <a href="#"><i class="fab fa-facebook"></i></a>
@@ -596,8 +605,8 @@ if (isset($_POST["send"])) {
     </div>
     <hr />
     <div class="footer-bottom">
-      <span>&copy; Swiftn | Designed by <a href="#">Med Khalil Zrelly</a> &
-        <a href="#">Hajer Talbi</a></span>
+      <span>&copy; Swiftn | Designed by <a href="https://www.linkedin.com/in/mohamed-khalil-zrelly/" target="_blank"
+          rel="noopener noreferrer">Makiz</a></span>
     </div>
   </footer>
 

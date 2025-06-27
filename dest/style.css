@@ -33,7 +33,7 @@ html {
   overflow-x: hidden;
 }
 body {
-  background-color: var(--white);
+  background: url(../img/bg6.jpg) no-repeat center center/cover;
 }
 section {
   width: 100vw;
@@ -60,29 +60,55 @@ section {
   box-shadow: var(--box-shadow);
   align-items: center;
   justify-content: space-between;
+  background: url(../img/bg6.jpg) no-repeat center center/cover;
 }
 .header .logo {
   font-size: 2.5rem;
   color: var(--main-color1);
+  text-shadow: 1px 1px 1px rgba(190, 68, 173, 0.5);
   font-weight: bold;
+  position: relative;
 }
 .header .logo span {
   color: var(--main-color2);
+  text-shadow: 1px 1px 1px rgba(0, 111, 238, 0.5);
 }
 .header .navbar li {
   display: inline;
 }
 .header .navbar a {
-  font-size: 2rem;
-  margin-left: 3rem;
+  font-size: 2.5rem;
+  margin: 0 1rem;
   color: var(--black);
   position: relative;
+}
+.header .navbar span {
+  font-size: 0;
+  transition: 0.5s;
+}
+.header .navbar span.actual {
+  font-size: 2.5rem;
+  text-shadow: 1px 1px 1px rgba(0,0,0, 0.5);
+}
+.header .navbar i {
+  border-radius: 5px;
+  margin-right: 0.5rem;
+}
+.navbar a:hover span {
+  font-size: 2.5rem;
+  text-shadow: 1px 1px 1px rgba(0,0,0, 0.5);
 }
 .navbar a::after {
   content: "";
   height: 3px;
+  border-radius: 15px;
   width: 0;
-  background-color: var(--main-color1);
+  background: linear-gradient(
+    45deg,
+    rgba(255, 128, 0, 0.9) 0%,
+    rgba(190, 68, 173, 0.9) 50%,
+    rgba(0, 111, 238, 0.9) 100%
+  );
   position: absolute;
   left: 0;
   bottom: -10px;
@@ -104,13 +130,23 @@ section {
   display: inline;
 }
 #user {
-  font-size: 1.9rem;
+  font-size: 2.5rem;
   color: var(--black);
-  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(0,0,0, 0.5);
+  font-weight: 500;
+  cursor: pointer;
   display: none;
 }
 #user.show_nav {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+#img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
 }
 .cta button {
   background-color: var(--light-white);
@@ -121,7 +157,7 @@ section {
   font-size: 1.5rem;
   font-weight: bold;
   cursor: pointer;
-  margin-left: 1rem;
+  margin: 0 0.5rem;
   border: var(--border);
   transition: 0.2s;
 }
@@ -167,10 +203,9 @@ section {
 legend {
   font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 1rem;
   text-align: center;
   margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   width: 100%;
 }
 
@@ -243,7 +278,7 @@ input[type="submit"] {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   cursor: pointer;
   border-radius: 4px;
   transition: 0.2s;
@@ -286,6 +321,35 @@ input[type="range"]::-webkit-slider-thumb {
 #price-value::after {
   content: " €";
 }
+.quick-links {
+  flex: 1;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.quick-links h2 {
+  margin-bottom: 2rem;
+}
+.quick-links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.quick-links li {
+  margin-bottom: 10px;
+}
+.quick-links a {
+  color: var(--black);
+  text-decoration: none;
+  transition: 0.3s;
+}
+.quick-links a:hover {
+  color: var(--white);
+}
 
 .cart {
   position: fixed;
@@ -293,11 +357,10 @@ input[type="range"]::-webkit-slider-thumb {
   left: 0;
   width: 100vw;
   height: 100vh;
-  padding: 7rem 3rem;
+  padding: 5rem 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
   transition: 0.5s;
   transform: translateX(110%);
   background-color: rgba(0, 0, 0, 0.5);
@@ -341,26 +404,33 @@ input[type="range"]::-webkit-slider-thumb {
   filter: none;
 }
 
-.cart .product p {
+.cart .product a {
+  color: var(--black);
+  display: block;
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: bold;
   width: 15rem;
-}
-.cart .product .price {
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: var(--main-color1);
+  line-height: 1.7rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.25rem;
 }
 .cart .product .dates {
   font-weight: 500;
+}
+.cart .product .price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--main-color1);
 }
 .cart .product .quantity {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  font-weight: 500;
 }
 .cart .product .quantity i {
+  position: relative;
   color: var(--white);
   font-size: 1.5rem;
   transition: 0.3s;
@@ -471,6 +541,24 @@ input[type="range"]::-webkit-slider-thumb {
 .prices .discount::after,
 .prices .total::after {
   content: " €";
+}
+.cart .fa-rotate {
+  margin: 0;
+  padding: 0;
+  font-size: 2rem;
+  padding: 1rem;
+  color: var(--white);
+  background-color: var(--main-color1);
+  border-radius: 50%;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: 0.5s;
+  display: none;
+}
+.cart .fa-rotate:hover {
+  transform: scale(1.2);
+  color: var(--main-color1);
+  background-color: var(--light-bg);
 }
 
 .destination-about {
@@ -923,6 +1011,12 @@ hr {
   .cta {
     margin-right: 1rem;
   }
+  .cart .product {
+    gap: 1rem;
+  }
+  .cart .products {
+    gap: 1rem;
+  }
 }
 @media (max-width: 1100px) {
   .cart .product {
@@ -938,6 +1032,32 @@ hr {
   }
   .search-container {
     width: 500px;
+  }
+  .cart {
+    flex-direction: column;
+  }
+  .cart .products.actif {
+    animation: flip-vertical-right 0.5s both;
+  }
+  .cart .prices.actif {
+    animation: flip-vertical-right 0.5s both;
+  }
+  @keyframes flip-vertical-right {
+    0% {
+      transform: scale(0.1) rotateY(-180deg);
+    }
+    100% {
+      transform: scale(1) rotateY(0);
+    }
+  }
+  .cart .prices.inactif {
+    display: none;
+  }
+  .cart .products.inactif {
+    display: none;
+  }
+  .cart .fa-rotate.show {
+    display: inline;
   }
   .destination-about {
     margin-top: 5rem;
@@ -1010,8 +1130,8 @@ hr {
   }
   .cart .product img {
     min-width: 100px;
-    width: 100px;
-    height: 60px;
+    width: 120px;
+    height: 70px;
   }
   .offer-card {
     width: auto;
@@ -1061,6 +1181,10 @@ hr {
   #price-value {
     margin-top: 1rem;
     margin-bottom: 1rem;
+  }
+  .cart .product img {
+    width: 90px;
+    height: 60px;
   }
   .destination-about .image img {
     min-width: 300px;

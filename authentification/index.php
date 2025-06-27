@@ -6,10 +6,10 @@ if (isset($_SESSION['authentified'])) {
   header('Location: ../home/index.php');
 }
 
-if (isset($_GET['link']) && strpos($_GET['link'], 'localhost/swiftn/')) {
+if (isset($_GET['link']) && strpos($_GET['link'], 'localhost/MAKIZ/Swiftn/')) {
   $link = $_GET['link'];
 } else {
-  $link = 'http://localhost/swiftn/home/index.php';
+  $link = 'http://localhost/MAKIZ/Swiftn/home/index.php';
 }
 
 $errors = [];

@@ -53,22 +53,22 @@ if (isset($_SESSION['authentified'])) {
   $class2 = "show_nav";
 }
 
-if (isset($_POST["minus"])) {
+if (isset($_POST['cart-update-id'])) {
   $active = true;
-  $stmt = $pdo->prepare("SELECT count(*) as nb FROM travel_offer o, cart c WHERE o.travel_offer_id = c.travel_offer_id AND cart_id = :id AND qte > 1");
-  $stmt->execute(['id' => $_POST['cart-update-id']]);
-  if ($stmt->fetch(PDO::FETCH_ASSOC)['nb'] != 0) {
-    $stmt2 = $pdo->prepare("UPDATE cart SET qte = qte - 1 WHERE cart_id = :id");
-    $stmt2->execute(['id' => $_POST['cart-update-id']]);
-  }
-}
-if (isset($_POST["plus"])) {
-  $active = true;
-  $stmt = $pdo->prepare("SELECT count(*) as nb FROM travel_offer o, cart c WHERE o.travel_offer_id = c.travel_offer_id AND cart_id = :id AND qte < available_seats");
-  $stmt->execute(['id' => $_POST['cart-update-id']]);
-  if ($stmt->fetch(PDO::FETCH_ASSOC)['nb'] != 0) {
-    $stmt2 = $pdo->prepare("UPDATE cart SET qte = qte + 1 WHERE cart_id = :id");
-    $stmt2->execute(['id' => $_POST['cart-update-id']]);
+  if (isset($_POST["minus"])) {
+    $stmt = $pdo->prepare("SELECT count(*) as nb FROM travel_offer o, cart c WHERE o.travel_offer_id = c.travel_offer_id AND cart_id = :id AND qte > 1");
+    $stmt->execute(['id' => $_POST['cart-update-id']]);
+    if ($stmt->fetch(PDO::FETCH_ASSOC)['nb'] != 0) {
+      $stmt2 = $pdo->prepare("UPDATE cart SET qte = qte - 1 WHERE cart_id = :id");
+      $stmt2->execute(['id' => $_POST['cart-update-id']]);
+    }
+  } else if (isset($_POST["plus"])) {
+    $stmt = $pdo->prepare("SELECT count(*) as nb FROM travel_offer o, cart c WHERE o.travel_offer_id = c.travel_offer_id AND cart_id = :id AND qte < available_seats");
+    $stmt->execute(['id' => $_POST['cart-update-id']]);
+    if ($stmt->fetch(PDO::FETCH_ASSOC)['nb'] != 0) {
+      $stmt2 = $pdo->prepare("UPDATE cart SET qte = qte + 1 WHERE cart_id = :id");
+      $stmt2->execute(['id' => $_POST['cart-update-id']]);
+    }
   }
 }
 
@@ -119,11 +119,12 @@ if (isset($_POST["send"])) {
     </div>
 
     <nav class="navbar">
-      <li><a href="../home/index.php">home</a></li>
-      <li><a href="../destinations/index.php">destinations</a></li>
-      <li><a href="../about/index.php">about</a></li>
-      <li><a href="../offers/index.php">offers</a></li>
-      <li><a href="#contact">contact</a></li>
+      <li><a href="../home/index.php"><i class="fa fa-home" aria-hidden="true"></i><span>home</span></a></li>
+      <li><a href="../destinations/index.php"><i class='fa fa-archway'></i><span class="actual">destinations</span></a>
+      </li>
+      <li><a href="../about/index.php"><i class="fa fa-info-circle" aria-hidden="true"></i><span>about</span></a></li>
+      <li><a href="../offers/index.php"><i class="fa fa-tag"></i><span>offers</span></a></li>
+      <li><a href="#contact"><i class="fa fa-address-book"></i><span>contact</span></a></li>
     </nav>
 
     <div class="cta">
@@ -149,7 +150,8 @@ if (isset($_POST["send"])) {
     </div>
 
     <div id="user" class=<?= $class1 ?>>
-      <i class="fa fa-user"></i><span>
+      <img src="../img/img-1.jpg" id="img" alt="">
+      <span>
         <?= $_SESSION['name'] ?>
       </span>
     </div>
@@ -244,14 +246,16 @@ if (isset($_POST["send"])) {
 
       $stmt = $pdo->prepare("SELECT * FROM user u, cart c, travel_offer o WHERE u.user_id = c.user_id AND o.travel_offer_id = c.travel_offer_id AND u.user_id = :user_id ORDER BY cart_id DESC");
       $stmt->execute(['user_id' => $user_id]);
-
+      if ($stmt->rowCount() == 0) {
+        $count = 0;
+      }
       while ($cart = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
         <div class="product">
           <img src=<?= $cart['travel_offer_src_image'] ?> alt="" />
           <div>
-            <p class="name">
+            <a class="name" href="../book/index.php?id=<?= $cart['travel_offer_id'] ?>">
               <?= $cart['travel_offer_name'] ?>
-            </p>
+            </a>
             <span class="dates">
               <?= $cart['departure_date'] ?>
             </span>
@@ -284,7 +288,8 @@ if (isset($_POST["send"])) {
       <?php } ?>
 
     </div>
-    <aside class="prices">
+    <aside class="prices <?php if (!isset($count))
+      echo 'inactif'; ?>">
       <h1>cart summary</h1>
       <div class="container">
         <div class="value">
@@ -306,7 +311,7 @@ if (isset($_POST["send"])) {
           echo "<a href=# onclick=empty()>checkout</a>";
           $errors = true;
         } else {
-          echo "<a href=../payment/index.php?link=http://localhost/swiftn/dest/index.php?id=" . $id . ">checkout</a>";
+          echo "<a href=../payment/index.php?link=http://localhost/MAKIZ/Swiftn/home/index.php>checkout</a>";
         }
         ?>
         <script>
@@ -316,7 +321,11 @@ if (isset($_POST["send"])) {
         </script>
       </div>
     </aside>
-    </div>
+    <i class="fa-solid fa-rotate" data-count=<?php if (isset($count)) {
+      echo $count;
+    } else {
+      echo '1';
+    } ?>></i>
   </section>
 
   <?php
@@ -467,8 +476,8 @@ if (isset($_POST["send"])) {
     </div>
     <hr />
     <div class="footer-bottom">
-      <span>&copy; Swiftn | Designed by <a href="#">Med Khalil Zrelly</a> &
-        <a href="#">Hajer Talbi</a></span>
+      <span>&copy; Swiftn | Designed by <a href="https://www.linkedin.com/in/mohamed-khalil-zrelly/" target="_blank"
+          rel="noopener noreferrer">Makiz</a></span>
     </div>
   </footer>
 

@@ -85,19 +85,19 @@ if (isset($_POST["send"])) {
 
   <?php
   if (isset($_SESSION['authentified'])) {
-    if (isset($added)) {
-      echo "<script>Swal.fire('Deleted From Cart', '', 'warning')</script>";
+    if (isset($added) && !empty(isset($added))) {
+      if ($added == 0) {
+        echo "<script>Swal.fire('Deleted From Cart', '', 'warning')</script>";
+      }
+      $added = "";
     }
     $stmt = $pdo->prepare("SELECT count(*) as nb FROM payment WHERE user_id = :user_id");
     $stmt->execute(['user_id' => $user_id]);
     if ($stmt->fetch(PDO::FETCH_ASSOC)['nb'] != 0) {
+      echo "<script>Swal.fire('Successful Purchase', '', 'success')</script>";
       $stmt = $pdo->prepare("DELETE FROM payment WHERE user_id = :user_id");
       $stmt->execute(['user_id' => $user_id]);
-      echo "<script>Swal.fire('Successful Purchase', '', 'success')</script>";
     }
-  }
-  if (isset($send)) {
-    echo "<script>Swal.fire('Message Sent', '', 'success')</script>";
   } ?>
 
   <section class="header">
@@ -298,7 +298,7 @@ if (isset($_POST["send"])) {
           echo "<a href=# onclick=empty()>checkout</a>";
           $errors = true;
         } else {
-          echo "<a href=../payment/index.php?link=http://localhost/swiftn/home/index.php>checkout</a>";
+          echo "<a href=../payment/index.php?link=http://localhost/MAKIZ/Swiftn/home/index.php>checkout</a>";
         }
         ?>
         <script>
@@ -498,6 +498,13 @@ if (isset($_POST["send"])) {
   </section>
 
   <footer class="footer">
+
+    <?php
+    if (isset($send) && !empty(isset($send))) {
+      echo "<script>Swal.fire('Message Sent', '', 'success')</script>";
+      $added = "";
+    } ?>
+
     <div class="footer-content">
       <div class="container">
         <div class="footer-section about">
@@ -508,8 +515,8 @@ if (isset($_POST["send"])) {
             memories.
           </p>
           <div class="contact" id="contact">
-            <p><i class="fas fa-phone"></i> &nbsp; +216 74 666 855</p>
-            <p><i class="fas fa-envelope"></i> &nbsp; info@Swiftn.tn</p>
+            <p><i class="fas fa-phone"></i> &nbsp; +216 54 666 855</p>
+            <p><i class="fas fa-envelope"></i> &nbsp; Makiz@Swiftn.tn</p>
           </div>
           <div class="socials">
             <a href="#"><i class="fab fa-facebook"></i></a>
@@ -548,7 +555,8 @@ if (isset($_POST["send"])) {
     </div>
     <hr />
     <div class="footer-bottom">
-      <span>&copy; Swiftn | Designed by <a href="#">Med Khalil Zrelly</a></span>
+      <span>&copy; Swiftn | Designed by <a href="https://www.linkedin.com/in/mohamed-khalil-zrelly/" target="_blank"
+          rel="noopener noreferrer">Makiz</a></span>
     </div>
   </footer>
 

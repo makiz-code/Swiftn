@@ -6,10 +6,10 @@ if (!isset($_SESSION['authentified'])) {
   header('Location: ../authentification/index.php');
 }
 
-if (isset($_GET['link']) && strpos($_GET['link'], 'localhost/swiftn/')) {
+if (isset($_GET['link']) && strpos($_GET['link'], 'localhost/MAKIZ/Swiftn/')) {
   $link = $_GET['link'];
 } else {
-  $link = 'http://localhost/swiftn/home/index.php';
+  $link = 'http://localhost/MAKIZ/Swiftn/home/index.php';
 }
 
 $db_host = 'localhost';
@@ -75,7 +75,7 @@ if (isset($_POST["pay"])) {
           <h3 class="title">billing address</h3>
           <div class="inputBox">
             <span>full name :</span>
-            <input type="text" placeholder="Med khalil Zrelly" required autocomplete="off" />
+            <input type="text" placeholder="Makiz" required autocomplete="off" />
           </div>
           <div class="inputBox">
             <span>email :</span>
@@ -109,7 +109,7 @@ if (isset($_POST["pay"])) {
           </div>
           <div class="inputBox">
             <span>name on card :</span>
-            <input type="text" placeholder="mr. Med Khalil Zrelly" required autocomplete="off" />
+            <input type="text" placeholder="mr. Makiz" required autocomplete="off" />
           </div>
           <div class="inputBox">
             <span>credit card number :</span>

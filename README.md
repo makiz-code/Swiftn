@@ -1,7 +1,19 @@
 # Travel Agency Website
-# This website is organized with separate folders for each page, each containing its own PHP, CSS, and JavaScript files. To showcase the website, follow these steps:
-#   * Download this repository.
-#   * Create the MySQL database from the "Database" folder and update the MySQL connector configurations in the PHP files.
-#   * Move the entire project to the "www" folder of your Apache server.
-#   * Activate the WAMP server.
-#   * Open your web browser and type "localhost" to access the site.
+
+Ce site web est organisé avec des dossiers séparés pour chaque page, chacun contenant ses fichiers PHP, CSS et JavaScript.
+
+## Instructions pour lancer le site
+
+1. **Téléchargez ce dépôt.**
+
+2. **Créez la base de données MySQL :**  
+   - Utilisez les fichiers SQL situés dans le dossier `Database`.  
+   - Mettez à jour les configurations de connexion MySQL dans les fichiers PHP.
+
+3. **Déplacez le projet**  
+   - Copiez l’intégralité du projet dans le dossier `www` de votre serveur Apache (par exemple WAMP).
+
+4. **Activez le serveur WAMP.**
+
+5. **Ouvrez votre navigateur**  
+   - Tapez l’URL suivante pour accéder au site :  

@@ -321,6 +321,35 @@ input[type="range"]::-webkit-slider-thumb {
 #price-value::after {
   content: " €";
 }
+.quick-links {
+  flex: 1;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.quick-links h2 {
+  margin-bottom: 2rem;
+}
+.quick-links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.quick-links li {
+  margin-bottom: 10px;
+}
+.quick-links a {
+  color: var(--black);
+  text-decoration: none;
+  transition: 0.3s;
+}
+.quick-links a:hover {
+  color: var(--white);
+}
 
 .cart {
   position: fixed;
@@ -667,35 +696,6 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .footer-section.about .socials i:hover {
   transform: scale(1.3);
-}
-.quick-links {
-  flex: 1;
-  margin-left: 5rem;
-  margin-right: 5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
-.quick-links h2 {
-  margin-bottom: 2rem;
-}
-.quick-links ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.quick-links li {
-  margin-bottom: 10px;
-}
-.quick-links a {
-  color: var(--black);
-  text-decoration: none;
-  transition: 0.3s;
-}
-.quick-links a:hover {
-  color: var(--white);
 }
 .contact-form {
   display: flex;

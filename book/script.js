@@ -107,6 +107,26 @@ for (let i = 0; i < plus.length; i++) {
   });
 }
 
+let products = document.querySelector(".cart .products");
+let prices = document.querySelector(".cart .prices");
+let flip = document.querySelector(".fa-rotate");
+
+if (flip.dataset.count == 1) {
+  flip.classList.add("show");
+  flip.addEventListener("click", () => {
+    if (products.classList.contains("inactif")) {
+      products.classList.add("actif");
+      flip.style.rotate = "-360deg";
+    } else {
+      products.classList.remove("actif");
+      flip.style.rotate = "360deg";
+    }
+    products.classList.toggle("inactif");
+    prices.classList.toggle("inactif");
+    prices.classList.toggle("actif");
+  });
+}
+
 function wait(ms) {
   return new Promise((resolve) => {
     setTimeout(resolve, ms);
